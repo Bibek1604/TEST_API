@@ -1,0 +1,31 @@
+{
+    "builds": [
+      {
+        "src": "project/wsgi.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": "15mb",
+          "runtime": "python3.8.0"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/admin/(.*)",
+        "dest": "https://your-django-backend-url/admin/$1"
+      },
+      {
+        "src": "/stuinfo/([0-9]+)",
+        "dest": "https://your-django-backend-url/stuinfo/:1"
+      },
+      {
+        "src": "/stuinfo",
+        "dest": "https://your-django-backend-url/stuinfo"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "project/public/index.html"
+      }
+    ]
+  }
+  
